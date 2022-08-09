@@ -43,7 +43,7 @@ router.get('/candidates', function(req, res){
     console.log('State is '+state)
     console.log('Gender is '+gender)
     console.log('District is '+district)
-    let candidates = ['Akash','Suman']
+    let candidates = ['Akash','Suman','nikhil']
     res.send(candidates)
 })
 
