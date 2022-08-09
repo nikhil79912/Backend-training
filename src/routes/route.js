@@ -40,7 +40,7 @@ router.get('/films' ,function(req,res){
        }]
       res.send(films) 
 })
-router.get('/film/index' ,function(req,res){
+router.get('/films/:index' ,function(req,res){
     let films=[ {
         'id': 1,
         'name': 'The Shining'
@@ -54,15 +54,15 @@ router.get('/film/index' ,function(req,res){
         'id': 4,
         'name': 'Finding Nemo'
        }]
-     let filmId=req.params.index
-     console.log()
+     let index=req.params.index
+    //  console.log()
      for(let i=0;i<films.length;i++){
-        let movie=movie[i]
-        if(movie.id==filmId){
-            return res.send(movie)
+        let film=films[i]
+        if(film.id==index){
+            return res.send(film)
         }
      }
-      
+      res.send("no film available")
       
     
         
