@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema( {
-    firstName: String,
-    lastName: String,
-    mobile: {
-        type: String,
-        unique: true,
-        required: true
+const bookSchema = new mongoose.Schema( {
+    bookName: String, 
+    authorName: String, 
+    tags: [String],
+    
+    isPublished: Boolean,
+    prices: {
+        indianPrice: String,
+        europePrice: String,
     },
-    emailId: String,
-    gender: {
-        type: String,
-        enum: ["male", "female", "LGBTQ"] //"falana" will give an error
-    },
-    age: Number,
-    // isIndian: Boolean,
-    // parentsInfo: {
-    //     motherName: String,
-    //     fatherName: String,
-    //     siblingName: String
-    // },
-    // cars: [ String  ]
+    sales: {type: Number, default: 10}
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema) //users
 
+module.exports = mongoose.model('Book', bookSchema) //users
 
+//Validation:
+//require:true
+//unique
+// default
 
-// String, Number
-// Boolean, Object/json, array
+//String
+//Number
+//Date
+//Boolean
+// Arrays
+// Object
+// ObjectId
+// Buffer - not cover
