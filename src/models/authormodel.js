@@ -1,19 +1,22 @@
+// const mongoose = require('mongoose');
+
+// const authorSchema = new mongoose.Schema( {
+//     author_id: String,
+//     author_name: String,
+//     age:Number, 
+//     address:String
+
+// }, { timestamps: true });
+
+// module.exports = mongoose.model('authorrs', authorSchema)
 const mongoose = require('mongoose');
 
-const bookSchema = new mongoose.Schema( {
-
-
-
-
-    author_id:Number,
-    author_name:String,
+const authorSchema = new mongoose.Schema( {
+    author_name: String,
     age:Number,
-    address:String
-
-
-
+    address:String,
+    rating : Number
 
 }, { timestamps: true });
 
-
-module.exports = mongoose.model('Author', bookSchema) //users
+module.exports = mongoose.model('newAuthor', authorSchema)
