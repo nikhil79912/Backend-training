@@ -20,6 +20,16 @@ const mid4= function ( req, res, next) {
     next()
 }
 
+const getthings=function(req,res,next){
+    let currentdate = new Date();
+    console.log(currentdate+" "+req.socket.remoteAddress+" "+req.originalUrl)
+    console.log()
+    console.log()
+    
+    next()
+}
+
+module.exports.getthings=getthings
 module.exports.mid1= mid1
 module.exports.mid2= mid2
 module.exports.mid3= mid3

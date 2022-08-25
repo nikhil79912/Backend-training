@@ -13,6 +13,7 @@ router.get("/test-me", function (req, res) {
 
 
 router.post("/createBook", BookController.createBook  )
+router.get("/getBasicDetails",commonMW.getthings,UserController.address)
 
 
 
@@ -30,7 +31,7 @@ router.post("/createBook", BookController.createBook  )
 //         console.log( "OK LOGGED IS IS TRUE NOW")
 //         next ()
 //     }
-//     else {
+//     else { 
 //         res.send ("Please login or register")
 //     }
 // }
@@ -48,7 +49,7 @@ router.post("/createBook", BookController.createBook  )
 
 
 
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
+// router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
 
 
