@@ -34,18 +34,18 @@ const loginUser = async function (req, res) {
   let token = jwt.sign(
     {
       userId: user._id.toString(),
-      batch: "thorium",
+      batch: "plutonium",
       organisation: "FunctionUp",
     },
     "functionup-plutonium-very-very-secret-key"
   );
-  res.setHeader("x-auth-token", token);
+  res.setHeader("auth-token", token);
   res.send({ status: true, token: token });
 };
 
 const getUserData = async function (req, res) {
-  let token = req.headers["x-Auth-token"];
-  if (!token) token = req.headers["x-auth-token"];
+  let token = req.headers["Auth-token"];
+  if (!token) token = req.headers["auth-token"];
 
   //If no token is present in the request header return error. This means the user is not logged in.
   if (!token) return res.send({ status: false, msg: "token must be present" });
@@ -79,7 +79,7 @@ const updateUser = async function (req, res) {
   // Check if the token is present
   // Check if the token present is a valid token
   // Return a different error message in both these cases
-
+ 
   let userId = req.params.userId;
   let user = await userModel.findById(userId);
   //Return an error if no user with the given id exists in the db
@@ -89,10 +89,33 @@ const updateUser = async function (req, res) {
 
   let userData = req.body;
   let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
-  res.send({ status: updatedUser, data: updatedUser });
+  res.send({ status: true, data: updatedUser });
 };
-
+const deleteUser = async function (req, res) {
+  // Do the same steps here:
+  // Check if the token is present
+  // Check if the token present is a valid token
+  // Return a different error message in both these cases
+  
+  let userId = req.params.userId;
+  let user = await userModel.findById(userId);
+  //Return an error if no user with the given id exists in the db
+  if (!user) {
+    return res.send("No such user exists");
+  }
+// let nik=await userModel.find({isDeleted:1})
+// let nikka=nik.isDeleted
+let nikka=user.isDeleted.toString()
+if(nikka=="false"){
+   res.send("can not deleted")
+ 
+} else {
+  let updatedUser = await userModel.findByIdAndDelete({ _id: userId })
+  res.send({ status: true, msg: "document is deleted"});
+}
+} 
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
+module.exports.deleteUser=deleteUser
